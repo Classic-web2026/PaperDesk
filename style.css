@@ -1,0 +1,388 @@
+body {
+    font-family: "Nunito", sans-serif;
+    margin: 0;
+    padding: 32px;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(233, 213, 255, .36), transparent 58%),
+        #F7F8FC;
+    scrollbar-width: thin;
+    scrollbar-color: #B8A0DD #F0ECF7;
+}
+
+*::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #F0ECF7;
+}
+
+*::-webkit-scrollbar-thumb {
+    border: 3px solid #F0ECF7;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #D7C8F0, #A991D2);
+    box-shadow: 0 0 8px rgba(233, 213, 255, .8);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #9D82C7;
+}
+
+body::before,
+body::after {
+    position: fixed;
+    z-index: 5;
+    right: 0;
+    left: 0;
+    height: 36px;
+    content: "";
+    pointer-events: none;
+}
+
+body::before {
+    top: 0;
+    background: linear-gradient(#F7F8FC, rgba(247, 248, 252, .72) 45%, transparent);
+}
+
+body::after {
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(247, 248, 252, .72) 55%, #F7F8FC);
+}
+
+.header,
+main {
+    animation: fade-up .55s both;
+}
+
+.category-tabs {
+    animation: fade-up .5s .1s both;
+}
+
+.sub-tabs {
+    animation: fade-up .5s .18s both;
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header {
+    position: sticky;
+    top: 12px;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid transparent;
+    background: #F7F6FB;
+    border-radius: 20px;
+    box-shadow: 8px 8px 20px rgba(43, 35, 65, .09), -7px -7px 18px rgba(255, 255, 255, .9);
+    transition: background .45s ease, box-shadow .45s ease, backdrop-filter .45s ease, border-color .45s ease;
+}
+
+.header.is-scrolled {
+    border: 1px solid rgba(255, 255, 255, .52);
+    background: rgba(247, 246, 251, .68);
+    box-shadow: 0 10px 32px rgba(43, 35, 65, .13), inset 0 1px 0 rgba(255, 255, 255, .72);
+    -webkit-backdrop-filter: blur(20px) saturate(1.45);
+    backdrop-filter: blur(20px) saturate(1.45);
+}
+
+.header img {
+    width: 75px;
+    border-radius: 18px;
+}
+
+.header h1 {
+    margin: 0;
+    color: #29243A;
+}
+
+main {
+    max-width: 1280px;
+    margin: 40px auto 0;
+}
+
+.category-tabs,
+.sub-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-tabs {
+    margin-bottom: 16px;
+}
+
+.sub-tabs {
+    margin-bottom: 24px;
+}
+
+.tab-button {
+    padding: 10px 18px;
+    border: 1px solid rgba(86, 73, 112, .07);
+    border-radius: 14px;
+    background: #F7F6FB;
+    box-shadow: 4px 4px 9px rgba(43, 35, 65, .08), -4px -4px 9px rgba(255, 255, 255, .86);
+    color: #716A80;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color .2s ease, background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.category-tabs .tab-button,
+.sub-tabs .tab-button {
+    animation: fade-up .45s both;
+}
+
+.category-tabs .tab-button:nth-child(2),
+.sub-tabs .tab-button:nth-child(2) {
+    animation-delay: .05s;
+}
+
+.category-tabs .tab-button:nth-child(3),
+.sub-tabs .tab-button:nth-child(3) {
+    animation-delay: .1s;
+}
+
+.tab-button:hover {
+    color: #403650;
+    transform: translateY(-1px);
+}
+
+.tab-button.is-active {
+    border-color: rgba(86, 73, 112, .04);
+    background: #EEEAF5;
+    box-shadow: inset 3px 3px 7px rgba(43, 35, 65, .08), inset -3px -3px 7px rgba(255, 255, 255, .9);
+    color: #59477A;
+}
+
+.tab-button:focus-visible,
+.image-open:focus-visible {
+    outline: 2px solid rgba(150, 197, 230, .55);
+    outline-offset: 3px;
+}
+
+.wallpaper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 20px;
+}
+
+.wallpaper-grid[data-device="phone"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.empty-state {
+    color: #716A80;
+}
+
+.wallpaper-card[hidden] {
+    display: none;
+}
+
+.wallpaper-card {
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid rgba(86, 73, 112, .05);
+    border-radius: 20px;
+    background: #F7F6FB;
+    box-shadow: 8px 8px 18px rgba(43, 35, 65, .09), -7px -7px 18px rgba(255, 255, 255, .9);
+    animation: fade-up .45s var(--enter-delay, 0ms) both;
+    transition: transform .45s cubic-bezier(.2, .75, .25, 1), box-shadow .45s ease, background .45s ease;
+}
+
+.wallpaper-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 12px 14px 26px rgba(43, 35, 65, .12), -8px -8px 20px rgba(255, 255, 255, .92);
+}
+
+.wallpaper-card>img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform .3s ease, filter .25s ease, opacity .25s ease;
+}
+
+.wallpaper-card[data-orientation="portrait"]>img {
+    aspect-ratio: 3 / 5;
+}
+
+.wallpaper-card[data-device="other"][data-orientation="landscape"]>img {
+    aspect-ratio: 4 / 3;
+}
+
+.wallpaper-card:hover>img {
+    transform: scale(1.04);
+}
+
+.wallpaper-card:has(.image-open:hover)>img,
+.wallpaper-card:has(.image-open:focus-visible)>img {
+    filter: blur(5px);
+    transform: scale(1.04);
+}
+
+.wallpaper-card>img.is-disintegrating {
+    opacity: 0;
+    filter: blur(2px);
+    transform: scale(.96);
+}
+
+.pixel-burst {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.download-pixel {
+    position: absolute;
+    animation: pixel-fly .72s cubic-bezier(.2, .65, .35, 1) var(--pixel-delay, 0ms) forwards;
+}
+
+@keyframes pixel-fly {
+    to {
+        opacity: 0;
+        transform: translate3d(var(--fly-x), var(--fly-y), 0) rotate(var(--fly-rotate)) scale(.12);
+    }
+}
+
+.image-open {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 1;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #F7F6FB;
+    box-shadow: 4px 4px 10px rgba(43, 35, 65, .12), -4px -4px 10px rgba(255, 255, 255, .9);
+    color: #403650;
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .35s ease, transform .35s cubic-bezier(.2, .75, .25, 1), box-shadow .35s ease;
+}
+
+.wallpaper-card:hover .image-open,
+.image-open:focus-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+@media (hover: none) {
+    .image-open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+.download-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    background: rgba(247, 248, 252, .94);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease, visibility .2s ease;
+}
+
+.download-screen.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.download-progress {
+    display: grid;
+    justify-items: center;
+    gap: 24px;
+    color: #403650;
+}
+
+.progress-track {
+    position: relative;
+    width: 260px;
+    height: 4px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #EAE5F2;
+    box-shadow: 0 0 12px rgba(233, 213, 255, .75);
+}
+
+.progress-track span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    border-radius: 4px;
+    background: #B49AD8;
+    box-shadow: 0 0 12px rgba(233, 213, 255, .95);
+    animation: blue-dash .8s linear infinite;
+}
+
+@keyframes blue-dash {
+    to {
+        transform: translateX(225%);
+    }
+}
+
+::selection {
+    background: #CDEBFF;
+    color: #193B5A;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 14px;
+    }
+
+    .header {
+        padding: 14px;
+    }
+
+    .header.is-scrolled {
+        top: 8px;
+    }
+
+    .wallpaper-grid[data-device="phone"] {
+        gap: 12px;
+    }
+
+    .wallpaper-grid[data-device="phone"] .wallpaper-card {
+        padding: 7px;
+    }
+}
