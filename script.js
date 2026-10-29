@@ -47,7 +47,73 @@ const files = [
     "windows-11-floating-3840x2400-20797.jpg",
     "windows-11-gradient-background-bloom-light-backgrounds-5k-5120x2880-8411.jpg",
     "windows-11-light-3840x2400-11762.jpg",
-    "windows-11-teal-3840x2400-11768.jpg"
+    "windows-11-teal-3840x2400-11768.jpg",
+    "acer-predator-black-3840x2160-27275.png",
+    "apple-logo-black-7680x4320-27322.png",
+    "apple-logo-shining-5120x2880-27380.png",
+    "avatar-aang-the-5120x2880-27087.jpg",
+    "black-panther-5120x2880-27331.png",
+    "bloom-windows-11-4500x3000-11486.jpg",
+    "blue-abstract-1080x1920-24765.jpg",
+    "blue-background-abstract-background-windows-11-1080x2160-8846.jpg",
+    "blue-background-abstract-background-windows-11-2048x2048-8846.jpg",
+    "blue-background-abstract-background-windows-11-3840x2160-8846.jpg",
+    "brabus-urban-e-5120x3413-27537.jpg",
+    "dark-red-abstract-5120x2880-27442.jpg",
+    "doctor-doom-8k-7680x4320-27347.jpg",
+    "dragon-ball-super-3840x2160-27491.jpg",
+    "europa-jupiter-moon-5120x2880-26741.jpg",
+    "ferrari-812-3840x2160-27553.jpg",
+    "ferrari-purosangue-3840x2160-27555.jpg",
+    "geometric-purple-2160x3840-24844.jpg",
+    "geometric-purple-2560x2560-24844.jpg",
+    "geometric-purple-5120x5120-24844.jpg",
+    "ghost-pixel-art-7680x4320-27474.png",
+    "green-abstract-1080x2160-27443.jpg",
+    "green-abstract-3840x1080-27443.jpg",
+    "gta-6-artwork-jason-3840x2160-26685.jpg",
+    "huawei-dark-mode-5800x3200-26686.png",
+    "judge-dredd-black-7680x4320-26911.png",
+    "lah-kara-star-wars-7680x4320-26972.png",
+    "landscape-layers-5120x3319-27382.png",
+    "layers-3d-1440x2560-17326.jpg",
+    "layers-3d-2560x2560-17326.jpg",
+    "layers-3d-5120x2880-17326.jpg",
+    "layers-windows-11-3840x2400-11770.png",
+    "macos-27-golden-4480x3088-26625.png",
+    "macos-27-golden-4480x3088-26626.png",
+    "microsoft-surface-5120x2880-26735.jpg",
+    "microsoft-surface-5120x2880-26737.jpg",
+    "mike-tyson-fists-of-5120x2880-27366.jpg",
+    "mortal-shell-knight-5120x2880-27506.jpg",
+    "motorola-razr-fifa-1440x2560-25823.jpg",
+    "motorola-razr-fifa-2560x2560-25823.jpg",
+    "motorola-razr-fifa-5120x2880-25823.jpg",
+    "purple-abstract-1125x2436-24770.jpg",
+    "stac-a-phris-arch-1206x2622-26748.jpg",
+    "stac-a-phris-arch-1440x2560-26748.jpg",
+    "stac-a-phris-arch-2560x2560-26748.jpg",
+    "stac-a-phris-arch-5120x3413-26748.jpg",
+    "stac-a-phris-arch-720x1280-26748.jpg",
+    "t-800-endoskeleton-6400x3632-26738.png",
+    "valley-de-yosemite-yosemite-national-park-landmark-1440x2560-4072.jpg",
+    "valley-de-yosemite-yosemite-national-park-landmark-2560x2560-4072.jpg",
+    "valley-de-yosemite-yosemite-national-park-landmark-5120x3200-4072.jpg",
+    "view-point-loch-katrine-scotland-sunset-landscape-dusk-5k-1440x2560-6399.jpg",
+    "view-point-loch-katrine-scotland-sunset-landscape-dusk-5k-2560x2560-6399.jpg",
+    "view-point-loch-katrine-scotland-sunset-landscape-dusk-5k-4849x2727-6399.jpg",
+    "vortex-colorful-5120x3833-26984.jpg",
+    "water-burst-mist-5120x2880-27430.jpg",
+    "welcome-home-apple-3840x2160-27518.png",
+    "xiaomi-18-fold-1440x2560-27263.jpg",
+    "xiaomi-18-fold-2560x2560-27263.jpg",
+    "xiaomi-18-fold-5120x2880-27263.jpg",
+    "yosemite-national-park-sunrise-tunnel-view-beautiful-sky-2160x3840-7804.jpg",
+    "yosemite-national-park-sunrise-tunnel-view-beautiful-sky-2560x2560-7804.jpg",
+    "yosemite-national-park-sunrise-tunnel-view-beautiful-sky-7878x5760-7804.jpg",
+    "yosemite-valley-mirror-lake-yosemite-national-park-1080x2400-6091.jpg",
+    "yosemite-valley-mirror-lake-yosemite-national-park-2048x2048-6091.jpg",
+    "yosemite-valley-mirror-lake-yosemite-national-park-3840x2160-6091.jpg"
 ];
 
 const lightFiles = new Set([
@@ -77,24 +143,30 @@ const darkFiles = new Set([
     "windows-11-teal-3840x2400-11768.jpg"
 ]);
 
-const pcAnimeFiles = new Set();
+const pcAnimeFiles = new Set(files.filter(file =>
+    /^(avatar-aang-the-|dragon-ball-super-)/.test(file)
+));
 const pcWindowsFiles = new Set(files.filter(file =>
-    /^(windows-11-|layers-windows-11-|waves-windows-11-)/.test(file) || file.startsWith("blue-aesthetic-")
+    /^(windows-11-|layers-windows-11-|waves-windows-11-|blue-background-abstract-background-windows-11-|bloom-windows-11-)/.test(file)
+    || file.startsWith("blue-aesthetic-")
 ));
 const pcAbstractFiles = new Set(files.filter(file =>
-    /^(abstract-background-|golden-abstract-3840|green-abstract-3840|huawei-|modern-blue-waves-|purple-abstract-3840|purple-background-)/.test(file)
+    /^(abstract-background-|blue-abstract-|blue-background-abstract-|dark-red-abstract-|geometric-purple-|golden-abstract-3840|green-abstract-|huawei-|layers-3d-|landscape-layers-|modern-blue-waves-|purple-abstract-3840|purple-background-|vortex-colorful-|water-burst-mist-)/.test(file)
 ));
-const pcSpaceFiles = new Set(files.filter(file => file.startsWith("solar-system-")));
+const pcSpaceFiles = new Set(files.filter(file =>
+    /^(solar-system-|europa-jupiter-moon-)/.test(file)
+));
 
 const phoneCategoryFiles = {
     cars: new Set(files.filter(file => /^(alfa-romeo|delorean-back|dodge-charger|ford-mustang|opel-stx)/.test(file))),
     motorcycles: new Set(files.filter(file => file.startsWith("bmw-f-450"))),
     anime: new Set(["mitsuki-koga-aya-1284x2778-27616.jpg"]),
     iphone: new Set(files.filter(file => file.startsWith("iphone-18-"))),
-    abstract: new Set(files.filter(file => /^(golden-abstract-1284|green-abstract-1284|purple-abstract-1284|motorola-razr-fold)/.test(file))),
+    abstract: new Set(files.filter(file => /^(blue-abstract-|blue-background-abstract-|geometric-purple-|golden-abstract-1284|green-abstract-|layers-3d-|motorola-razr-fold|purple-abstract-1125|purple-abstract-1284)/.test(file))),
     games: new Set([
         "dinosaur-pixel-art-1284x2778-27520.jpg",
         "kingdom-hearts-1284x2778-27569.jpg",
+        "motorola-razr-fifa-1440x2560-25823.jpg",
         "mortal-shell-knight-1284x2778-27506.jpg",
         "piranha-plant-super-1284x2778-27469.jpg"
     ]),
@@ -140,9 +212,13 @@ window.addEventListener("scroll", updateHeaderOnScroll, { passive: true });
 updateHeaderOnScroll();
 
 const cards = files.map((file, index) => {
-    const isPortrait = /-(1284x2778|1320x2868|1206x2622)-/.test(file);
-    const device = file.startsWith("samsung-galaxy-tab") || file.startsWith("narnia-the") ? "other"
-        : isPortrait || file.startsWith("motorola-razr-fold") ? "phone" : "pc";
+    const dimensions = file.match(/(\d{3,5})x(\d{3,5})/);
+    const width = dimensions ? Number(dimensions[1]) : 0;
+    const height = dimensions ? Number(dimensions[2]) : 0;
+    const isPortrait = height > width || file.startsWith("motorola-razr-fold");
+    const isSquare = width === height && width > 0;
+    const device = file.startsWith("samsung-galaxy-tab") || file.startsWith("narnia-the") || isSquare ? "other"
+        : isPortrait ? "phone" : "pc";
     const card = document.createElement("article");
     card.className = "wallpaper-card";
     card.dataset.device = device;
@@ -151,7 +227,11 @@ const cards = files.map((file, index) => {
 
     const image = document.createElement("img");
     image.src = `previews/${file}`;
-    image.alt = "Обои";
+    const imageName = file
+        .replace(/\.[^.]+$/, "")
+        .replace(/-\d{3,5}x\d{3,5}-\d+$/, "")
+        .replace(/-/g, " ");
+    image.alt = `Обои: ${imageName}`;
     image.loading = "lazy";
     image.decoding = "async";
     image.addEventListener("error", () => {
